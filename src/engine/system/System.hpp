@@ -78,7 +78,10 @@ public:
 			}
 		};
 
-		for(size_t tid = 0; tid < count; ++tid) {
+		const size_t r = high - low;
+		const size_t tcount = r > count ? count : r;
+
+		for(size_t tid = 0; tid < tcount; ++tid) {
 			// For each thread, call the same lambda with different bounds as arguments.
 			const size_t threadLow  = tid * span;
 			const size_t threadHigh = tid == (count-1) ? high : ((tid + 1) * span);
